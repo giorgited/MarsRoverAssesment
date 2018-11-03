@@ -16,6 +16,11 @@ namespace MarsRover.Logic
 
         public async Task<List<Uri>> GetStoreDailyImageAsync(DateTime date)
         {
+            if (date > DateTime.Now)
+            {
+                throw new Exception("Date can not be in future.");
+            }
+
             if (ImageExist(date, out string[] urls)){
                 Console.WriteLine($"Images for {date.ToShortDateString()} already exists..");
                 return urls.Select(u => new Uri(u)).ToList();

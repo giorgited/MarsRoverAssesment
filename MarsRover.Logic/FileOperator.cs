@@ -7,29 +7,10 @@ namespace MarsRover.Logic
 {
     public static class FileOperator
     {
-
         public static List<DateTime> ReadParseDatesFromFile(string fileName)
         {
             List<DateTime> result = new List<DateTime>();
-            string[] allLines = new string[20];
-
-            try
-            {
-                 allLines = File.ReadAllLines(@"wwwroot\files\" + fileName);
-
-            } catch (FileNotFoundException notFoundEx)
-            {
-                //LogInformation in DB 
-                throw;
-            } catch (DirectoryNotFoundException directoryNotFoundEx)
-            {
-                //LogInformation in DB 
-                throw;
-            } catch (Exception ex)
-            {
-                //LogInformation in DB 
-                throw;
-            }
+            string[] allLines = ReadAllLinesFromFile(fileName);
 
             foreach (var line in allLines)
             {
@@ -40,8 +21,31 @@ namespace MarsRover.Logic
             }
 
             return result;
-            
         }
         
+        public static string[] ReadAllLinesFromFile(string fileName)
+        {
+            try
+            {
+                var allLines = File.ReadAllLines(@"wwwroot\files\" + fileName);
+                return allLines;
+
+            }
+            catch (FileNotFoundException notFoundEx)
+            {
+                //LogInformation in DB 
+                throw;
+            }
+            catch (DirectoryNotFoundException directoryNotFoundEx)
+            {
+                //LogInformation in DB 
+                throw;
+            }
+            catch (Exception ex)
+            {
+                //LogInformation in DB 
+                throw;
+            }
+        }
     }
 }
