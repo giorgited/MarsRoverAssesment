@@ -8,6 +8,6 @@ namespace MarsRover.Logic.Models
 
     public class Photo
     {
-        public Uri ImgSrc { get; set; }
+        public Uri img_src { get; set; }
     }
 }

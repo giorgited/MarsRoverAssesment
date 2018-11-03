@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -14,6 +15,7 @@ namespace MarsRover
 {
     public class Startup
     {
+        public string pathToContents;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -38,6 +40,11 @@ namespace MarsRover
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            pathToContents = env.ContentRootPath
+                   + Path.DirectorySeparatorChar.ToString()
+                   + "files"
+                   + Path.DirectorySeparatorChar.ToString();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
