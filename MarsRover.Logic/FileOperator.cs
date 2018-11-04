@@ -27,7 +27,7 @@ namespace MarsRover.Logic
         {
             try
             {
-                var allLines = File.ReadAllLines(@"wwwroot\files\" + fileName);
+                var allLines = File.ReadAllLines(Path.Combine("wwwroot", "files", fileName));
                 return allLines;
 
             }
